@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O'Reilly Expert MCP Interactive Demo</title>
+  <!-- Google Fonts for Poppins (Gilroy fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Main Grid Layout (Full Screen Workspace) -->
+  <div class="app-layout full-workspace">
+    
+    <!-- Main Workspace Area -->
+    <main class="main-workspace">
+      
+      <!-- Top Bar: Logo and Environment Selector -->
+      <header class="workspace-header">
+        <div class="header-left">
+          <img src="logo_red.png" alt="O'Reilly Media Logo" class="brand-logo">
+          <div class="header-titles">
+            <h1 class="header-main-title">Expert MCP Interactive Showcase</h1>
+            <p class="header-subtitle">Compare expert-grounded AI capabilities with standard online intelligence</p>
+          </div>
+        </div>
+        <div class="ide-selector-container">
+          <span class="selector-label">Environment:</span>
+          <div class="ide-tabs">
+            <button class="ide-tab-btn active" data-ide="cursor">Cursor</button>
+            <button class="ide-tab-btn" data-ide="claude">Claude.ai</button>
+            <button class="ide-tab-btn" data-ide="copilot">Copilot Chat</button>
+            <button class="ide-tab-btn" data-ide="vscode">VS Code</button>
+            <button class="ide-tab-btn" data-ide="intellij">IntelliJ IDEA</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Playground Content -->
+      <div class="playground-body">
+        
+        <!-- Role Focus selector row -->
+        <div class="focus-selector-section">
+          <span class="focus-label">Select Focus Area:</span>
+          <div class="focus-tabs-row">
+            <button class="focus-tab-btn active" data-persona="exec">Technical Executive</button>
+            <button class="focus-tab-btn" data-persona="engineering">Engineering Team</button>
+            <button class="focus-tab-btn" data-persona="platform">Platform and Infrastructure</button>
+            <button class="focus-tab-btn" data-persona="data">Data and Analytics</button>
+            <button class="focus-tab-btn" data-persona="security">Security and DevSecOps</button>
+            <button class="focus-tab-btn" data-persona="it">IT and Corporate Tech</button>
+            <button class="focus-tab-btn" data-persona="ld">Learning and Development</button>
+          </div>
+        </div>
+
+        <!-- Question Tabs Section -->
+        <div class="question-selector-section">
+          <span class="question-label">Pre-loaded Questions:</span>
+          <div id="question-tabs" class="question-tabs-row">
+            <!-- Dynamic Buttons Go Here -->
+          </div>
+        </div>
+
+        <!-- Simulated IDE Window -->
+        <div id="mock-ide-container" class="mock-ide theme-cursor ide-split">
+          
+          <!-- Mock IDE Toolbar / Top Window Control Bar -->
+          <div class="ide-window-bar">
+            <div class="window-buttons">
+              <span class="dot close"></span>
+              <span class="dot minimize"></span>
+              <span class="dot expand"></span>
+            </div>
+            <div id="mock-ide-title" class="ide-window-title">Cursor IDE</div>
+          </div>
+
+          <!-- IDE Workspace: Sidebar + Editor + Chat -->
+          <div class="ide-workspace-body">
+            
+            <!-- Mock IDE Leftmost Activity Bar (VS Code / Cursor Icon Strip) -->
+            <div id="mock-ide-activity-bar" class="ide-activity-bar">
+              <div class="activity-icon active">&#9776;</div>
+              <div class="activity-icon">&#128196;</div>
+              <div class="activity-icon">&#128269;</div>
+              <div class="activity-icon">&#128736;</div>
+              <div class="activity-icon">&#128172;</div>
+            </div>
+            
+            <!-- Mock IDE Left Sidebar (Folder Structure) -->
+            <div id="mock-ide-sidebar" class="ide-left-sidebar">
+              <div class="sidebar-folder-header">PROJECT EXPLORER</div>
+              <div class="folder-items">
+                <div class="folder-item file">index.js</div>
+                <div class="folder-item file active">server.js</div>
+                <div class="folder-item folder">
+                  <span class="folder-name">src</span>
+                  <div class="folder-sub-items">
+                    <div class="folder-item file">config.json</div>
+                    <div class="folder-item file">mcp-handler.ts</div>
+                  </div>
+                </div>
+                <div class="folder-item file">package.json</div>
+              </div>
+            </div>
+
+            <!-- Central Content: Comparison Chat View -->
+            <div class="ide-content-area">
+              
+              <!-- Chat Prompt Box -->
+              <div class="prompt-box">
+                <div class="prompt-header">
+                  <span class="user-avatar">U</span>
+                  <span class="user-name">User Prompt</span>
+                </div>
+                <div id="simulated-prompt" class="prompt-content">
+                  Loading question...
+                </div>
+              </div>
+
+              <!-- Split Comparison Pane -->
+              <div class="split-comparison">
+                
+                <!-- Left Column: With O'Reilly Expert MCP -->
+                <div class="response-pane mcp-response-active">
+                  <div class="pane-header">
+                    <div class="header-brand-info">
+                      <img src="logo_white.png" alt="O'Reilly Logo" class="pane-logo">
+                      <span class="badge badge-mcp">Expert MCP Active</span>
+                    </div>
+                  </div>
+                  <div class="pane-scroll-area">
+                    <!-- Grounded Response Contents -->
+                    <div id="mcp-response-body" class="markdown-body">
+                      Loading grounded response...
+                    </div>
+                    
+                    <!-- Grounding Citations Panel -->
+                    <div class="citations-panel">
+                      <div class="citations-header">Grounded Sources (Provenance Log)</div>
+                      <div class="citations-sub">Click a source below to verify the expert and publication details:</div>
+                      <div id="mcp-citations-list" class="citations-list">
+                        <!-- Citations badges go here -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Without O'Reilly Expert MCP -->
+                <div class="response-pane generic-response-active">
+                  <div class="pane-header">
+                    <div class="header-brand-info">
+                      <span class="vanilla-title">Standard AI Assistant</span>
+                      <span class="badge badge-warning">Unverified</span>
+                    </div>
+                  </div>
+                  <div class="pane-scroll-area">
+                    <div class="warning-banner">
+                      Output is unverified. This content is not grounded in licensed expert publications and may contain hallucinations.
+                    </div>
+                    <!-- Generic Response Contents -->
+                    <div id="generic-response-body" class="markdown-body">
+                      Loading generic response...
+                    </div>
+                    
+                    <!-- Unverified Sources Panel -->
+                    <div class="unverified-panel">
+                      <div class="unverified-header">Unverified Sources (Web Crawler Context)</div>
+                      <div class="unverified-sub">These ungrounded materials were retrieved from index databases:</div>
+                      <div id="generic-sources-list" class="unverified-list">
+                        <!-- Unverified badges go here -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Mock Chat Input Box (At bottom of Chat Area) -->
+              <div class="mock-chat-input-bar">
+                <div class="input-wrapper">
+                  <span class="input-placeholder">Ask O'Reilly Expert MCP...</span>
+                  <div class="input-icons">
+                    <span class="input-icon-btn">&#128206;</span>
+                    <span class="input-icon-btn">&#9786;</span>
+                  </div>
+                </div>
+                <button class="btn-send-mock">Send</button>
+              </div>
+
+            </div>
+
+            <!-- Mock IntelliJ Right Sidebar (Toolbars) -->
+            <div id="mock-ide-right-sidebar" class="ide-right-sidebar">
+              <div class="right-sidebar-tab">Database</div>
+              <div class="right-sidebar-tab">Maven</div>
+              <div class="right-sidebar-tab">Commit</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Citation Popup Detail Modal -->
+  <div id="citation-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-brand-tag">
+          <img src="logo_red.png" alt="O'Reilly Red Logo" class="modal-logo-img">
+          <span class="badge badge-verified">Verified Source</span>
+        </div>
+        <button id="modal-close-btn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h3 class="modal-headline">Provenance Metadata</h3>
+        
+        <div class="metadata-grid">
+          <div class="meta-row">
+            <span class="meta-label">Expert Author:</span>
+            <span id="modal-author-name" class="meta-value">Sam Newman</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Domain Expertise:</span>
+            <span id="modal-author-role" class="meta-value">Software Architecture</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Publication Title:</span>
+            <span id="modal-book-title" class="meta-value">Building Microservices</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Location Reference:</span>
+            <span id="modal-chapter-info" class="meta-value">Chapter 4: Integration Patterns</span>
+          </div>
+        </div>
+
+        <div class="author-bio-section">
+          <h4 class="bio-title">Author Biography</h4>
+          <p id="modal-author-bio" class="bio-text">
+            Sam Newman is a technologist focusing on the areas of cloud, microservices, and continuous delivery.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
